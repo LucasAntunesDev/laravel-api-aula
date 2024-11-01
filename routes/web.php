@@ -27,4 +27,6 @@ Route::prefix('people')->group(function () {
     Route::get('list', [PeopleController::class, 'list']);
 
     Route::post('store', [PeopleController::class, 'store']);
+
+    Route::post('storeInterest', [PeopleController::class, 'storeInterest']);
 });
