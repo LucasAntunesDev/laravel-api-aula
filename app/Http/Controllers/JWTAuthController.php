@@ -35,7 +35,7 @@ class JWTAuthController extends Controller {
                 return response()->json(['error' => 'Invalid credentials'], 401);
             }
 
-            $user = auth()->user();
+            $user = JWTAuth::user();
 
             # No caso de atribuir um papel
             #$token = JWTAuth::claims(['role' => $user->role])->fromUser($user);
@@ -45,5 +45,11 @@ class JWTAuthController extends Controller {
         } catch (JWTException $exception) {
             return response()->json(['error' => 'Could not create token'], 500);
         }
+    }
+
+    public function logout() {
+        JWTAuth::invalidate(JWTAuth::getToken());
+
+        return response()->json(['message' => 'Logout succesfully'], 200);
     }
 }
